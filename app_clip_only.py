@@ -232,5 +232,10 @@ if __name__ == "__main__":
     if not os.path.exists("templates/index.html"):
         with open("templates/index.html", "w") as f:
             f.write("<h1>Frontend goes here</h1>")
-    logger.info(f"Starting server at http://{HOST}:{PORT}")
-    app.run(host=HOST, port=PORT, debug=False)
+
+    # Use 0.0.0.0 and env PORT for cloud deployment
+    host = "0.0.0.0"
+    port = int(os.environ.get("PORT", 10000))  # default for many hosts is 10000
+    logger.info(f"Starting server at http://{host}:{port}")
+    app.run(host=host, port=port, debug=False)
+
