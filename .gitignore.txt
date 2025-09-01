@@ -1,0 +1,6 @@
+# Ignore big folders
+amazon_images/
+amazon_clip/
+__pycache__/
+*.pkl
+*.log
