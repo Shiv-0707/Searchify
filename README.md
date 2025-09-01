@@ -20,3 +20,13 @@ Tech Stack
 -> CLIP (ViT-B/32) — for encoding and comparing images
 
 -> Pandas + Pickle — for fast metadata and embedding storage
+
+#Approach
+
+I built ImageMatcher to feel smooth and clever, not just fast. At its heart, it leans on the CLIP model (ViT-B/32), which understands images in a way that’s similar to how humans do. I precompute embeddings for every image in your collection—so when you drop a new image in, it doesn’t need to learn anything new—it just compares.
+
+Once your image is processed, the app calculates cosine similarity between your query and the saved embeddings. The magic happens fast: it sorts the results and returns only the closest matches to you, along with easy-to-read titles and thumbnails.
+
+Flask is the rocket that drives this whole system. It manages uploading, similarity computation, and serving results—all wrapped neatly in JSON. The code even uses a thread lock so multiple people can use it at once without confusion.
+
+By combining CLIP’s brainpower with pre-shared computations and Flask’s simplicity, ImageMatcher manages to feel almost instant, while still delivering smart, relevant results.
